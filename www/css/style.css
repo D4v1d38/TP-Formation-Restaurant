@@ -1,0 +1,225 @@
+/*===GLOBAL===*/
+*{
+    box-sizing: border-box;
+}
+html{
+   font-size:62.5%; 
+}
+
+img{
+    max-width:100%;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    margin:0;
+    font-size:1.6rem;
+}
+
+.container{
+    width:1400px;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+/*=== style des liens en forme de bouton ====*/
+.btn-link{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 1.8rem;
+    font-weight: bold;
+    display:block;
+    padding:0.8rem 1.2rem;
+    background-color:silver;
+    color: rgb(0,0,0);
+    text-decoration: none;
+    border-radius:0.6rem;
+    border: 0.2rem solid rgb(215, 130, 115);
+    box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.5);
+    max-width :15rem;
+}
+
+.btn-link:hover{
+    box-shadow: inset 0.3rem 0.3rem 0.3rem rgba(0,0,0,0.5);
+    background-color:rgb(215, 130, 115);
+    border: 0.2rem solid silver;
+}
+/*=== style des liens  ====*/
+.link{
+
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding:0.8rem 1.2rem;
+    background-color:silver;
+    color: rgb(0,0,0);
+    border-radius:0.6rem;
+    background-color: rgb(215, 130, 115);
+}
+
+.link:hover{
+
+    color:#fff;
+   
+}
+/*Style global des formulaires*/
+.form{
+    width:75%;
+    margin:auto;
+}
+.form fieldset{
+    border: 0.1rem solid rgb(215, 130, 115);
+}
+
+.form legend{
+    color:  rgb(215, 130, 115);
+}
+
+.form div{
+    padding:1rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.form label{
+    text-align: right;
+    display:inline-block;
+    width:25%;
+    padding:0.5rem;
+}
+.form input,
+.form textarea{
+    font-size:1.6rem;
+    width:50%;
+    padding: 0.8rem;
+}
+
+.form div.submit-contenair{
+  
+    justify-content: space-around;
+}
+
+.submit-contenair input{
+    width:25%;
+}
+
+/*Style des Sections*/
+.section-center{
+    text-align:center;
+}
+
+
+.table th,
+.table tr{
+    text-align: center;
+    min-width: 160px;
+}
+
+/*messages d'erreur*/
+.errorMessage{
+    background-color: red;
+    color: #fff;
+    padding: 1rem;
+}
+
+.error,
+.info,
+.success{
+    color: #fff;
+    text-align: center;
+    padding:1rem;
+}
+.error{
+    background-color: red;
+}
+.info{
+    background-color: blue;
+}
+.success{
+    background-color: green;
+}
+
+/*====HEADER====*/
+.top-header{
+    background: center/cover no-repeat url('./assets/banniere.jpg');
+    padding:1rem 0rem;
+    border-bottom: 0.5rem solid rgb(215, 130, 115);
+}
+
+.logo-container{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 5rem;
+    font-weight: bold;
+    color: rgb(0,0,0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.logo{
+    width:15%;
+}
+.header-title{
+    background-color: silver;
+    padding: 0 1.6rem;
+    border-radius:0.8rem;
+    box-shadow: 1rem 1rem 1rem rgba(0,0,0,0.5);
+    border: 0.6rem solid rgb(215, 130, 115);
+}
+
+
+.links-container{
+    display:flex;
+    justify-content: space-around;
+    padding:1.6rem;
+    background-color: rgba(255,255,255,0.5);
+}
+/*===HOMEPAGE ===*/
+
+.meal-container{
+    display:flex;
+    flex-wrap : wrap;
+    justify-content: space-between;
+}
+.meal-card{
+    background-color: #fff;
+    border: 0.1rem dashed rgb(215, 130, 115);
+    width:45%;
+    text-align:justify;
+    padding: 1rem;
+}
+
+.meal-card h2{
+    background-color: rgb(215, 130, 115);
+    margin:0;
+    text-align: center;
+    padding: 1rem;
+}
+
+.meal-card p:nth-child(3){
+    font-weight: bold;
+    
+}
+
+
+/*====ORDER====*/
+.order-choice{
+    display: flex;
+    flex-direction: column;
+}
+
+.meal-presentation{
+    display: flex;
+    flex-direction: column;
+}
+
+/*====FOOTER====*/
+
+.bottom-footer{
+    font-family: 'Shadows Into Light', cursive;
+    font-weight:bold;
+    text-align: center;
+    background-color: silver;
+    padding:2rem;
+    border-top: 0.5rem solid rgb(215, 130, 115);
+    margin-top: 1rem;
+}

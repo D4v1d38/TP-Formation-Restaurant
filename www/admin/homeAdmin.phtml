@@ -1,0 +1,59 @@
+<?php
+    
+    $adminSession = new AdminController();
+    
+?>
+
+<?php if($adminSession->isAdmin() == true): ?>
+    <!--Si l'administrateur est connecté-->
+    
+    <div class="links-container">
+        <a class="btn-link" href="index.php?action=add_article">Ajouter un produit</a>
+        <a class="btn-link" href="index.php?action=edit_product">Modifier un produit</a>
+        <a class="btn-link" href="index.php?action=edit_booking">afficher la liste des reservations</a>
+        <a class="btn-link" href="index.php?action=orders_Edit">afficher la liste des commandes</a>
+   </div> 
+
+   <?php if(isset($_GET['message'])): ?>
+        <p class="<?= $_GET['class'] ?>"><?= $_GET['message'] ?><p>
+    <?php endif; ?>
+    
+    <!--On affiches les boutons d'administration -->
+    
+<?php else: ?>
+<!--Sinon on affiche le fromulaire de connexion-->
+    
+    <h2>Espace Administrateur</h2>
+    
+    <form class="form" action="index.php?action=admin" method="POST" enctype="multipart/form-data" >
+        
+        <?php if(isset($message)):?>
+            <p class="errorMessage"><?=$message?></p>
+        <?php endif; ?>
+        
+        
+        <fieldset>
+            <legend>Connexion administrateur</legend>
+            
+             <div>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" required/>
+            </div>
+            
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" required />
+            </div>
+            
+        </fieldset>
+        
+        <div class="submit-contenair">
+                <input class="btn-link" type="submit" name="submit" value="Se connecter"/>
+                <input class="btn-link" type="reset" name="Annuler" value="Annuler"/>
+        </div>
+        
+        
+    </form>
+    
+
+<?php endif; ?>

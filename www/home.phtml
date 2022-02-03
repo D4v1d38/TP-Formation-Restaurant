@@ -1,0 +1,20 @@
+<!--HOMEPAGE-->
+
+<section class="container" >
+    
+    <h1>Nos plats</h1>
+    
+    <div class=" meal-container">
+        
+        <?php foreach($meals as $meal):  ?>
+            <div class="meal-card">
+                <h2><?= $meal['name'] ?></h2>
+                <p><?= $meal['description'] ?></p>
+                <p>prix: <?= $meal['prix'] ?> €</p>
+                <img src="www/images/<?= $meal['photo'] ?>" alt"photo du plat">
+            </div>
+        <?php endforeach; ?> 
+        
+    </div>
+    
+</section>

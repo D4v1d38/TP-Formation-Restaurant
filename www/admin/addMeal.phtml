@@ -1,0 +1,50 @@
+<!--On s'assure que l'administrateur est bien connecté-->
+
+<?php if(!$this->connect ->isAdmin()): 
+    echo "test";
+    // header("location:index.php");
+    // exit();
+    
+endif; ?>
+
+<section class="container">
+    
+    
+        <h2>Ajouter un repas</h2>
+    
+        <form class="form" action ="index.php?action=add_article" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Repas à modifier</legend>
+            
+                
+                <div>
+                    <label for ="menu_name">Nom du Menu : </label>
+                    <input type="text" name = "menu_name" id="menu_name" >
+                </div>
+                
+                <div>
+                    <label for ="menu_description">Description du Menu : </label>
+                    <textarea name="menu_description" id="menu_description" rows="15"></textarea>
+                </div>
+                
+                <div>
+                    <label for ="menu_price">Prix du menu : </label>
+                    <input type="text" name = "menu_price" id="menu_price" >
+                </div>          
+                
+                <div>
+                    <label for ="photo">Photo du Menu : </label>
+                    <input type="file" name = "photo" id="menu_photo" >
+                </div>  
+                
+    
+                <div class="submit-contenair">
+                    <input class="btn-link" type="submit" name="submit" value="Valider"/>
+                    <input class="btn-link" type="reset" name="Annuler" value="effacer le contenu"/>
+                </div>
+
+            </fieldset>    
+        </form>
+    
+    
+</section>

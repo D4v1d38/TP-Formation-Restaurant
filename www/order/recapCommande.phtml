@@ -1,0 +1,28 @@
+<!--Permet d'afficher la confirmation de commande -->
+
+<!--On s'assure que l'utilisateur est bien connecté-->
+
+<?php if(!$this->connect ->is_Connect()): 
+    
+    header("location:index.php");
+    exit();
+    
+endif; ?>
+
+
+
+<!--VERSION AFFICHAGE nom et prénom avec $_SESSION
+on recupere $lastIdCmd et $montantTotal dans OrderController.php/addOrderBdd();-->
+<!--<p>Merci <?=$_SESSION['firstname']." ". $_SESSION['name']. "pour votre commande" ?>  </p>-->
+
+
+<!--VERSION affichage avec la methode getUserById dans User.php; qui est appelée par OrderController.php/addOrderBdd-->
+<p>Merci <?=$userInfos['nom']." ". $userInfos['prenom']. " pour votre commande" ?>  </p>
+
+<p>Votre commande n° <?= $lastIdCmd ?> a été validée !</p>
+<p><strong> Le montant total est de : <?= $montantTotal ?></strong>€</p>
+
+<P>Vos informations :</P>
+<P> <?=$userInfos['adresse']?></P>
+<P> <?=$userInfos['email']?></P>
+

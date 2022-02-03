@@ -1,0 +1,18 @@
+<!--On s'assure que l'utilisateur est bien connecté-->
+
+<?php if(!$this->connect ->is_Connect()): 
+    
+    header("location:index.php");
+    exit();
+    
+endif; ?>
+
+<!--Layout qui sera retourner a loaddetails et  qu'on affichera dans #target dans la fonction affdetail  -->
+
+<div class="meal-presentation">
+    <img src="www/images/<?= htmlspecialchars($oneMeal["photo"]) ?>" alt="<?=htmlspecialchars($oneMeal["photo"])?>"/>
+    <p><?= htmlspecialchars($oneMeal["description"]) ?></p>
+    <strong><?= htmlspecialchars($oneMeal["prix"])." €" ?> </strong>
+    
+</div>
+

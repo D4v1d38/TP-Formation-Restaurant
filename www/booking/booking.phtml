@@ -1,0 +1,42 @@
+<!--FORMULAIRE CREATION DE COMPTE-->
+
+<!--On s'assure que l'utilisateur est bien connecté-->
+
+<?php if(!$this->connect ->is_Connect()): 
+    
+    header("location:index.php");
+    exit();
+    
+endif; ?>
+
+<section class="container section-center" >
+
+    <form class="form" action="index.php?action=booking" method="POST">
+        
+        <?php if(isset($message)):?>
+            <p class="errorMessage"><?=$message?></p>
+    
+        <?php endif; ?>
+        
+        <fieldset>
+            <legend>Informations</legend>
+            
+            <div>
+                <label for="date">Date de réservation : </label>
+                
+                <input type="date" name="date" required>
+                <input type="time" name="hour" required>
+                
+                <label for="number-person" > Nombre de couverts : </label>
+                <input type="number" min=1 max="15" name="number-person" required/>
+
+                <input type="hidden" name="id_user" value="<?= $_SESSION['idUser'] ?>">  
+
+                <input class="btn-link" type="submit" name="submit" value="valider">
+                <input class="btn-link" type="reset" name="Annuler" value="Annuler">
+            </div>
+        </fieldset>
+
+    </form>
+    
+</section>

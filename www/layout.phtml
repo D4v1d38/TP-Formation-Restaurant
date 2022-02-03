@@ -1,0 +1,83 @@
+<?php
+  //créer une instance de la classe du controlleur   user 
+  $userSession = new UserController();
+  $adminSession = new AdminController();
+
+?>
+
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Le restaurant</title>
+    <script  src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="  crossorigin="anonymous"></script>
+    
+    <!--Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!--CSS-->
+    <link rel="stylesheet" href="www/css/style.css" type="text/css" />
+</head>
+<body>
+    
+    <header class="top-header">
+        
+        <div class="logo-container">
+            <img class="logo" src="www/css/assets/rat.png">
+            <p class="header-title"> Chez Daddou resto' - La cuisine au pif ! </p>
+        </div>
+        
+        <div class="links-container">
+            
+            <?php if($adminSession->isAdmin() == true): ?>
+                <p>Bienvenue <?=$_SESSION['pseudoAdmin'] ?></p>
+                <a class="btn-link" href="index.php?action=admin">Tableau de bord</a>
+                <a class="btn-link" href="index.php?action=admin_deconnect">Deconnexion</a>
+                
+            <?php elseif($userSession->is_Connect() == true):?>
+                <a class="btn-link" href="index.php?action=booking">Réserver</a>
+                <a class="btn-link" href="index.php?action=order">Commander</a>
+                <a class="btn-link" href="index.php?action=deconnect">Deconnexion</a>
+                <p>Bienvenue <?=$_SESSION['firstname']." ".$_SESSION['name'] ?></p>
+                
+            <?php else: ?>
+                <a class="btn-link" href="index.php?action=create_account">Créer un compte</a>
+                <a class="btn-link" href="index.php?action=connexion">Connexion</a>
+            <?php endif; ?>
+            
+            
+        </div>
+        
+    </header>
+
+    <!--Partie dynamique-->
+    <main>
+        
+        <!--<?php if(isset($message)):?>-->
+        <!--<p class="errorMessage"><?=$message?></p>-->
+        <!--<?php endif; ?>-->
+        
+        <?php require $template.".phtml"; ?>
+        
+    </main>
+    
+    
+    <footer class="bottom-footer">
+        
+        <div>
+            <a class="link"  href="">Visa</a>
+            <a class="link" href="">Mastercard</a>
+            <a class="link" href="">Paypal</a>
+            
+            <p>Réalisé avec beaucoup de motivation, et un soupcon de pif</p>
+        </div>
+
+    </footer>
+    
+    <script type="text/javascript" src="www/js/valid_action_commande.js"></script>
+</body>
+</html>

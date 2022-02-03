@@ -1,0 +1,83 @@
+<!--On s'assure que l'administrateur est bien connecté-->
+
+<?php if(!$this->connect ->isAdmin()): 
+    
+    header("location:index.php");
+    exit();
+    
+endif; ?>
+
+<section class="container">
+    <!--Si l'URL "modifier un article" envoi un id on affiche le formulaire prérempli, SINON on affiche la liste de repas-->
+    
+    <?php if(array_key_exists('id_meal',$_GET)): ?>
+        
+    
+        <h2>Modifier le repas</h2>
+    
+        <form class="form" action ="index.php?action=edit_product" method="POST" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Repas à modifier</legend>
+            
+                <input type="hidden" name="id_menu" value="<?= htmlspecialchars($meal['id_meal']) ?>">
+                
+                <div>
+                    <label for ="menu_name">Nom du Menu : </label>
+                    <input type="text" name = "menu_name" id="menu_name" value="<?= htmlspecialchars($meal['name']) ?>">
+                </div>
+                
+                <div>
+                    <label for ="menu_description">Description du Menu : </label>
+                    <textarea name="menu_description" id="menu_description" rows="15"><?= htmlspecialchars($meal['description']) ?></textarea>
+                </div>
+                
+                <div>
+                    <label for ="menu_price">Prix du menu : </label>
+                    <input type="text" name = "menu_price" id="menu_price" value="<?= htmlspecialchars($meal['prix']) ?>">
+                </div>          
+                
+                <div>
+                    <label for ="photo">Photo du Menu : </label>
+                    <input type="file" name = "photo" id="menu_photo" value="<?= htmlspecialchars($meal['photo']) ?>">
+                </div>  
+                
+    
+                <div class="submit-contenair">
+                    <input class="btn-link" type="submit" name="submit" value="Valider"/>
+                    <input class="btn-link" type="reset" name="Annuler" value="effacer le contenu"/>
+                </div>
+
+            </fieldset>    
+        </form>
+    
+    <?php else: ?>
+    
+        <h2>Liste des repas</h2>
+        
+        <table>
+            <tr>
+                <th>Nom du repas</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Photo</th>
+                <th>modifier</th>
+                <th>supprimer</th>
+                
+            </tr>
+            
+            <!--$meals est retourne par getMeals() qui est appelé par editProduct()-->
+            
+            <?php foreach($meals as $meal): ?>
+            <tr>
+                <td><?= $meal['name'];?></td>
+                <td><?= $meal['description'];?></td>
+                <td><?= $meal['prix'];?></td>
+                <td><img src="www/images/<?= $meal['photo'];?>" alt="<?= $meal['name'];?>"></td>
+                <td><a href="index.php?action=edit_product&id_meal=<?= $meal['id_meal'];?>">modifier</a></td>
+                <td><a href="index.php?action=delete_product&id_meal=<?= $meal['id_meal'];?>">supprimer</a></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    
+    <?php endif; ?>
+</section>

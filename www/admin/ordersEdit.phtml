@@ -1,0 +1,84 @@
+<!--On s'assure que l'administrateur est bien connecté-->
+<?php if(!$this->adminConnect ->isAdmin()): 
+    
+    header("location:index.php");
+    exit();
+    
+endif; ?>
+
+
+
+<section class="container">
+
+    <?php if(array_key_exists('id_com',$_GET)): ?>
+        <h2>Detail de la commande</h2>
+        
+        
+        <div>
+            <p><strong>Commande N° <?= $detailsOrder[0]['id_commande'] ?></strong></p>
+            <p>Passé le  <?= $detailsOrder[0]['date'] ?></p>
+            <p>Par <?= $detailsOrder[0]['prenom']." ".$detailsOrder[0]['nom'] ?></p>
+        </div>
+        
+        <table class="table">
+          
+            <tr>
+                <th>Date</th>
+                <th>Plat</th>
+                <th>quantité</th>
+                <th>prix_unitaire</th>
+                <th>Sous-total</th>
+
+            </tr>  
+            
+            <?php foreach($detailsOrder as $item):?>
+                <tr>
+                    <td><?= $item['date'] ?></td>
+                    <td><?= $item['name'] ?></td>
+                    <td><?= $item['quantite'] ?></td>
+                    <td><?= $item['prix_unit'] ?></td>
+                    <td><?= $item['soustotal'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+            
+        </table>
+        
+        <p><strong>MONTANT TOTAL : <?= $detailsOrder[0]['prix_total'] ?> €</strong></p>
+    
+    <?php else: ?>
+    
+        <h2>Liste des Commandes</h2>
+        
+        <table class="table">
+            <tr>
+                <th>N° Commande</th>
+                <th>Date</th>
+                <th>prix total</th>
+                <th>prenom</th>
+                <th>nom</th>
+                <th>mail</th>
+                <th>tel</th>
+                <th>details</th>
+                <th>supprimer</th>
+                
+            </tr>
+            
+        <?php foreach($ordersList as $item):?>
+        
+            <tr>
+                <td><?=htmlspecialchars($item['id_commande'])?></td>
+                <td><?=htmlspecialchars($item['date'])?></td>
+                <td><?=htmlspecialchars($item['prix_total'])?></td>
+                <td><?=htmlspecialchars($item['nom'])?></td>
+                <td><?=htmlspecialchars($item['prenom'])?></td>
+                <td><?=htmlspecialchars($item['email'])?></td>
+                <td><?=htmlspecialchars($item['tel'])?></td>
+                <td><a href="index.php?action=orders_Edit&id_com=<?=$item['id_commande']?>">details</a></td>
+                <td><a href="index.php?action=delete_order&id_com=<?=$item['id_commande']?>">supprimer</a><td>
+            </tr>
+        <?php  endforeach; ?>
+        </table>
+        
+    <?php endif; ?>
+    
+</section>

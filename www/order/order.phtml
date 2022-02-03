@@ -1,0 +1,75 @@
+<!--On s'assure que l'utilisateur est bien connecté-->
+
+<?php if(!$this->connect ->is_Connect()): 
+    
+    header("location:index.php");
+    exit();
+    
+endif; ?>
+
+<!--FORMULAIRE de commande -->
+
+<section class="container section-center" >
+
+    <form class="form order-form" id="form-select-meal">
+
+        <fieldset>
+            <legend> Ajouter un article </legend>
+            
+            <div class="order-choice">
+                <label for="date">Votre choix : </label>
+                
+                <select name="meal-select" id="meal-select">
+                   
+                    
+                    <?php foreach($mealsList as $meal): ?>
+                    
+                    <option value=<?= $meal['id_meal'] ?>><?= $meal['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+                
+                <div id="target">
+                    
+                    <!-- ici on affiche du resultat de la requete ajax-->
+                    
+                </div>
+
+            </div>
+                <label for="quantity"> Quantité</label>
+                <input type="number" min="0" name="quantity" id="quantity" required>
+
+                <input class="btn-link" type="button" value="ajouter" id="add-menu">
+            </div>
+            
+        </fieldset>
+        
+        <fieldset>
+            <legend>Récapitulatif de votre commande</legend>
+                
+            <div>
+                 <table id="panier"> 
+                     <thead>
+                        <th>Quantité</th>
+                        <th>Produit</th>
+                        <th>Prix Unitaire</th>
+                        <th>Prix Total</th>
+                    </thead>
+                    
+                    <tbody id="cases">
+   
+                    </tbody>
+                    
+                    <tr id="montantTotalPanier"></tr>
+                    
+
+                </table>   
+                
+            </div>
+                 
+        </fieldset>
+        
+        <input class="btn-link" type="button" value="valider" id="valider" >
+
+    </form>
+    
+</section>

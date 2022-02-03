@@ -1,0 +1,100 @@
+<!--On s'assure que l'administrateur est bien connecté-->
+
+<?php if(!$this->adminConnect ->isAdmin()): 
+    
+    header("location:index.php");
+    exit();
+    
+endif; ?>
+
+<section class="container">
+
+    <?php if(array_key_exists('id_reservation',$_GET)): ?>
+
+    <h2>Afficher le detail de la réservation<h2>
+    <?php 
+        $reservation    = htmlspecialchars($oneResa['id_reservation']);
+        $day            = htmlspecialchars($oneResa['day']);
+        $month          = htmlspecialchars($oneResa['month']);
+        $year           = htmlspecialchars($oneResa['year']);
+        $hour           = htmlspecialchars($oneResa['hour']);
+        $minute         = htmlspecialchars($oneResa['minutes']);
+        $nbCouverts     = htmlspecialchars($oneResa['nb_couverts']);
+        $prenom         = htmlspecialchars($oneResa['prenom']);
+        $nom            = htmlspecialchars($oneResa['nom']);
+        $adresse        = htmlspecialchars($oneResa['adresse']);
+        $ville          = htmlspecialchars($oneResa['ville']);
+        $codePostal     = htmlspecialchars($oneResa['code_postal']);
+        $email          = htmlspecialchars($oneResa['email']);
+        $tel            = htmlspecialchars($oneResa['tel']);
+
+        // var_dump($oneResa);
+    ?>
+    <form action="index.php?action=edit_booking" method='POST'>
+        <fieldset>
+            <legend>Informations</legend>
+                
+                <div>
+                    <label for="date">Date de réservation : </label>
+                    
+                    <input type="text" name="date" value="<?= $year."-".$month."-".$day ?>" required>
+                    <input type="time" name="hour" value="<?= $hour.":".$minute ?>"required>
+                    
+                    <label for="number-person" > Nombre de couverts : </label>
+                    <input type="number" min=1 max="15" name="number-person" value="<?= $nbCouverts ?>" required/>
+
+                    <input type="hidden" name="id_reservation" value="<?= $reservation ?>"> 
+
+                    <input class="btn-link" type="submit" name="submit" value="valider">
+                    <input class="btn-link" type="reset" name="Annuler" value="Annuler">
+                </div>
+        </fieldset>
+
+    </form>
+
+    <div>
+        <h3>Informations du client </h3>
+        <p>réservé par : <?= $prenom." ".$nom ?></p>
+        <p>adresse : <?= $adresse?></p>
+        <p>Ville: <?= $ville?> </p>
+        <p>CP: <?= $codePostal?> </p>
+        <p>email: <?= $email ?></p>
+        <p>Télephone: <?= $tel ?></p>
+    </div>
+
+    <?php else:?>
+        <h2>Liste des Réservations</h2>
+        
+        <table class="table">
+            <tr>
+                <th>N° Reservation</th>
+                <th>Date</th>
+                <th>nb couverts</th>
+                <th>prenom</th>
+                <th>nom</th>
+                <th>mail</th>
+                <th>tel</th>
+                <th>modifier</th>
+                <th>supprimer</th>
+                
+            </tr>
+            
+            
+            
+            <?php foreach($listeresa as $item): ?>
+            <tr>
+                <td><?= $item['id_reservation'];?></td>
+                <td><?= $item['date'];?></td>
+                <td><?= $item['nb_couverts'];?></td>
+                <td><?= $item['prenom'];?></td>
+                <td><?= $item['nom'];?></td>
+                <td><?= $item['email'];?></td>
+                <td><?= $item['tel'];?></td>
+                <td><a href="index.php?action=edit_booking&id_reservation=<?=$item['id_reservation'];?>">Modifier</a></td>
+                <td><a href="index.php?action=delete_booking&id_reservation=<?=$item['id_reservation'];?>">supprimer</a><td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php endif;?>
+    
+</section>
